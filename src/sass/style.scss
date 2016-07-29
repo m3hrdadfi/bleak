@@ -9,8 +9,8 @@ $breakpoint-phone:		30em;
 $breakpoint-tablet:		50em;
 $breakpoint-desktop:	70em;
 
-$color-green-85: #36D995;
-$color-green-72: #2DB77E;
+$color-green-85: #03A9F4;
+$color-green-72: #1976D2;
 
 $color-yellow-100:	#FFC336;
 
@@ -40,8 +40,9 @@ $color-primary-active:		$color-green-72; /* Dark */
 html {}
 
 body {
-	font: 300 1em / 1.5em 'Merriweather Sans', sans-serif;
+	font: 300 1em / 1.5em 'Behdad-Regular', sans-serif;
 	color: $color-gray-40;
+	//direction: rtl;
 }
 
 ::-moz-selection, ::selection {
@@ -118,11 +119,11 @@ ul > li:before,
 ol > li:before {
 	position: absolute;
 	width: 2em;
-	margin-left: -3em;
+	margin-right: -3em;
 	font-size: 1em;
 	font-weight: 400;
 	line-height: 1.5em;
-	text-align: right;
+	text-align: left;
 	color: $color-gray-15;
 }
 ul > li:before {
@@ -234,6 +235,8 @@ tt {
 	color: #000;
 	font-weight: 400;
 	border-radius: 2px;
+	text-align: left;
+	direction: ltr;
 }
 
 pre {
@@ -246,6 +249,8 @@ pre {
 	background: $color-gray-65;
 	color: #fff;
 	box-sizing: border-box;
+	text-align: left;
+	direction: ltr;
 
 	code,
 	tt {
@@ -634,6 +639,7 @@ body {
 	transform-style: preserve-3d;
 	opacity: 0;
 	z-index: 100;
+	direction: rtl;
 
 	@media only screen and (max-width: $breakpoint-tablet) {
 		width: 90%;
@@ -673,7 +679,7 @@ body {
 			background: #fff;
 			border-bottom: 4px solid $color-primary-default;
 			box-shadow: 0 0.125em 0.125em rgba(0,0,0,0.1);
-			transform: rotate(2.5deg);
+			//transform: rotate(2.5deg);
 			transition: all ease-out 0.2s;
 			z-index: 115;
 		}
@@ -738,7 +744,7 @@ body {
 		position: relative;
 		list-style: none;
 		margin: 0;
-		padding: 2em 0;
+		padding: 1em 0 2em 0;
 		height: 100%;
 		box-sizing: border-box;
 		overflow-x: hidden;
@@ -751,7 +757,7 @@ body {
 			&:after {
 				content: '';
 				position: absolute;
-				left: 1.5em;
+				//right: 1.5em;
 				top: 0;
 				width: 100%;
 				border-top: 1px solid $color-gray-90;
@@ -783,10 +789,10 @@ body {
 					&:before {
 						content: '';
 						position: absolute;
-						left: 0;
+						right: 0;
 						top: 0;
 						height: 100%;
-						border-left: 4px solid $color-primary-default;
+						border-right: 4px solid $color-primary-default;
 					}
 				}
 			}
@@ -840,6 +846,7 @@ body {
 #header {
 	position: relative;
 	padding: 4em 0;
+	margin-bottom: 70px;
 
 	.inner {
 		position: relative;
@@ -849,6 +856,7 @@ body {
 	.header-title {
 		display: block;
 		text-align: center;
+		direction: rtl;
 	}
 
 	.header-name {
@@ -861,9 +869,10 @@ body {
 		color: $color-gray-15;
 		padding: 0;
 		margin: 0;
+		direction: rtl;
 
 		em {
-			font-family: 'Helvetica Neue', sans-serif;
+			font-family: 'Behdad-Regular', sans-serif;
 			position: relative;
 			top: -0.334em;
 			margin-left: -0.25em;
@@ -952,7 +961,11 @@ body {
 		 font-size: 0.75em;
 		 line-height: 1.334em;
 
-		span {
+		span.b {
+			.c {
+				font-size: 1.5em;
+			}
+
 			font-weight: 400;
 			color: $color-gray-40;
 			margin-right: 1em;
@@ -1044,20 +1057,28 @@ body {
 
 	.credits {
 		text-align: center;
-		font-size: 0.75em;
+		font-size: 1.3em;
 		line-height: 1.334em;
-		padding: 2.667em;
+		padding: 1.667em;
 		overflow: auto;
 
 		span {
 			display: block;
 		}
 
+		.credits-cy {
+			i {
+				color: #d14836;
+			}
+		}
+
 		.credits-theme {
-			float: left;
+			font-family: 'Inconsolata', monospace;
+			//float: left;
 		}
 		.credits-software {
-			float: right;
+			font-family: 'Inconsolata', monospace;
+			//float: right;
 		}
 	}
 }
@@ -1077,6 +1098,8 @@ body {
 .post {
 	position: relative;
 	z-index: 20;
+	direction: rtl;
+	text-align: right;
 
 	.post-image {
 		display: block;
@@ -1124,7 +1147,7 @@ body {
 		&:before {
 			content: '';
 			position: absolute;
-			left: 0;
+			right: 0;
 			bottom: -0.334em;
 			width: 1em;
 			margin-bottom: -2px;
@@ -1172,7 +1195,7 @@ body {
 	position: relative;
 
 	.post {
-		float: left;
+		float: right;
 		width: 33.30%;
 
 		@media only screen and (max-width: $breakpoint-tablet) {
@@ -1303,6 +1326,7 @@ body {
 			transition: all ease-out 0.2s;
 			transform: scale(1);
 			transform-style: preserve-3d;
+			text-align: right;
 
 			@media only screen and (max-width: $breakpoint-tablet) {
 				padding: 1em;
@@ -1345,7 +1369,7 @@ body {
 				background: #fff;
 				border-top: 4px solid $color-primary-default;
 				box-shadow: 0 0 2em rgba(0,0,0,0.2);
-				transform: rotate(5deg);
+				//transform: rotate(5deg);
 				transition: all ease-out 0.2s;
 			}
 		}
@@ -1645,6 +1669,7 @@ body {
 				width: 100%;
 				box-sizing: border-box;
 				transition: all ease-out 0.2s;
+				direction: rtl;
 
 				.post-nav-title {
 					display: block;

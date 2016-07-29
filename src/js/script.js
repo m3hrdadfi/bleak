@@ -4,6 +4,35 @@ jQuery(function($) {
 	var body = $('body');
 
 	/* ==========================================================================
+	 Moment-jalaali
+	 ========================================================================== */
+	pdigit = ["۰", "۱", "۲", "۳", "۴", "۵", "۶", "۷", "۸", "۹"];
+	var digit2p = function (id) {
+		var self = this;
+		$(id).each(function (key, digit) {
+			var d = $(digit);
+			var dt = d.text();
+			dt = dt.replace(/[0-9]/gm, function(w) {
+				return pdigit[w];
+			});
+			d.html(dt);
+		});
+	};
+	var to_jalaali = function (id) {
+		var then = $(id);
+		var self = this;
+		if(then.attr("data-date")){
+			var date = moment(new Date(then.attr("data-date")));
+			var persianDate = date.format("jYYYY/jM/jD").toString().replace(/[0-9]/gm, function(w) {
+				return pdigit[w];
+			});
+			then.html(persianDate);
+		}
+	};
+	to_jalaali('.moment-date');
+	digit2p('.digit2p');
+
+	/* ==========================================================================
 	   Menu Function
 	   ========================================================================== */
 
@@ -78,6 +107,8 @@ jQuery(function($) {
 		var postlist = $('.post-list').masonry({
 			itemSelector			: '.post',
 			isAnimated				: false,
+			isRTL					: true,
+			isOriginLeft			: false,
 			gutter					: 0,
 			columnWidth				: 1,
 			transitionDuration		: 0
@@ -145,29 +176,6 @@ jQuery(function($) {
 	comments();
 
 	/* ==========================================================================
-	   Reading Time
-	   ========================================================================== */
-
-	function readingTime() {
-		// Don't execute on the front page
-		if (location.pathname === '/') {
-			return;
-		}
-
-		var post = body.find('article');
-		var postReadingTime = post.find('.post-reading-time');
-
-		post.readingTime({
-			readingTimeTarget: postReadingTime.find('.estimated-reading-time'),
-			wordCountTarget: postReadingTime.find('.word-count'),
-			error: function () {
-				postReadingTime.find('.post-reading-time').remove();
-			}
-		});
-	}
-	readingTime();
-
-	/* ==========================================================================
 	   Reload all scripts after AJAX load
 	   ========================================================================== */
 
@@ -178,7 +186,9 @@ jQuery(function($) {
 		video();
 		comments();
 		currentMenuFix();
-		readingTime();
+
+		to_jalaali('.moment-date');
+		digit2p('.digit2p');
 	}
 
 	/* ==========================================================================
